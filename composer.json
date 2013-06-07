@@ -1,0 +1,23 @@
+{
+    "name": "bluebanner/rpc",
+    "description": "",
+    "authors": [
+        {
+            "name": "Mars Zhou",
+            "email": "arook@vip.qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Bluebanner\\Rpc": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
