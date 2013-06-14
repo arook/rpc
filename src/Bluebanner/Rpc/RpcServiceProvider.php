@@ -19,6 +19,16 @@ class RpcServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('bluebanner/rpc');
+		
+		include __DIR__.'/../../filters.php';
+		
+		include __DIR__.'/../../routes.php';
+		
+		$app = $this->app;
+		
+		if ($app['config']->get('rpc::enabled', true)) {
+		  
+		}
 	}
 
 	/**
@@ -28,7 +38,10 @@ class RpcServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		//
+	  $this->app['rpc'] = $this->app->share(function ($app)
+	  {
+	    return new Rpc($app['view']);
+	  });
 	}
 
 	/**
@@ -38,7 +51,7 @@ class RpcServiceProvider extends ServiceProvider {
 	 */
 	public function provides()
 	{
-		return array();
+		return array('rpc');
 	}
 
 }

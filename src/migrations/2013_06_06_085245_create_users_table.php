@@ -11,7 +11,7 @@ class CreateUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('auth_user', function($table) {
+		Schema::create('rpc_auth_user', function($table) {
 			$table->increments('id');
 			$table->string('username', 50)->unique();
 			$table->string('password', 60);
@@ -25,26 +25,15 @@ class CreateUsersTable extends Migration {
 			$table->timestamps();
 		});
   		
-		DB::table('auth_user')->insert(array(
-			'username' => 'admin',
-			'password' => Hash::make('admin'),
-			'role' => 1,
-			'company_id' => 1,
-		));
-		
 		// Company
-		Schema::create('company', function($table) {
+		Schema::create('rpc_company', function($table) {
 			$table->increments('id');
 			$table->string('name', 100);
 			$table->text('desc');
 			$table->engine = 'InnoDB';
 			$table->timestamps();
 		});
-		
-		DB::table('company')->insert(array(
-			'name' => 'Sample Company',
-			'desc' => 'desc for sample compay',
-		));
+
 	}
 
 	/**
@@ -54,8 +43,8 @@ class CreateUsersTable extends Migration {
 	 */
 	public function down()
 	{
-	  Schema::drop('auth_user');
-		Schema::drop('company');
+	  Schema::drop('rpc_auth_user');
+		Schema::drop('rpc_company');
 	}
 
 }

@@ -12,7 +12,7 @@ class CreateSkuInfos extends Migration {
  	public function up()
  	{
  		// SKU info
-   	Schema::create('item', function($table) {
+   	Schema::create('rpc_item', function($table) {
    		$table->increments('id');
    		$table->string('sku', 20);
    		$table->text('desc');
@@ -23,18 +23,10 @@ class CreateSkuInfos extends Migration {
    		$table->engine = 'innoDB';
    		$table->timestamps();
 
-   		$table->foreign('company_id')->references('id')->on('company');
+   		$table->foreign('company_id')->references('id')->on('rpc_company');
    		$table->index(array('sku', 'company_id'));
    	});
 
-   	DB::table('item')->insert(array(
-   		'sku' => '111-11101-01',
-   		'desc' => 'sample sku',
-   		'company_id' => 1,
-   		'consuming' => 5,
-   		'amount' => 50,
-   		'train' => true,
-   	));
  	}
 
 	/**
@@ -44,7 +36,7 @@ class CreateSkuInfos extends Migration {
 	 */
  	public function down()
  	{
- 		Schema::drop('item');
+ 		Schema::drop('rpc_item');
  	}
 
 }
